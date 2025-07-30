@@ -111,6 +111,13 @@
             <version>${jsonschema-generator.version}</version>
         </dependency>
 
+        <!-- MCP Client -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-mcp-client-webflux</artifactId>
+        </dependency>
+
+
     </dependencies>
 
     <build>
