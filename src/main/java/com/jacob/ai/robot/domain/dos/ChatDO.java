@@ -1,4 +1,4 @@
-package com.jacob.ai.robot.domain.doc;
+package com.jacob.ai.robot.domain.dos;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

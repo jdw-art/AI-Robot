@@ -1,6 +1,6 @@
 package com.jacob.ai.robot;
 
-import com.jacob.ai.robot.domain.doc.ChatDO;
+import com.jacob.ai.robot.domain.dos.ChatDO;
 import com.jacob.ai.robot.domain.mapper.ChatMapper;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;

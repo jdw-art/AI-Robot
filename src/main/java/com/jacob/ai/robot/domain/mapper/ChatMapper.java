@@ -1,7 +1,7 @@
 package com.jacob.ai.robot.domain.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.jacob.ai.robot.domain.doc.ChatDO;
+import com.jacob.ai.robot.domain.dos.ChatDO;
 
 /**
  * @Author: Jacob
