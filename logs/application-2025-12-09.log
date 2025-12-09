@@ -109,7 +109,3 @@ java.lang.ArithmeticException: / by zero
 2025-12-09 22:43:57.133 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - AI-Robot-HikariCP - Added connection com.p6spy.engine.wrapper.ConnectionWrapper@34445bfa
 2025-12-09 22:43:57.136 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - AI-Robot-HikariCP - Start completed.
 2025-12-09 22:43:57.399 [http-nio-8080-exec-2] INFO  com.jacob.ai.robot.aspect.ApiOperationLogAspect - ====== 请求结束: [新建对话], 耗时: 1137ms, 出参: {"success":true,"message":null,"errorCode":null,"data":{"summary":"你好","uuid":"1c664446-d1a5-4724-bfaa-1fda204c7621"}} =================================== 
-2025-12-09 22:47:29.088 [SpringApplicationShutdownHook] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2025-12-09 22:47:29.098 [tomcat-shutdown] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
-2025-12-09 22:47:29.101 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - AI-Robot-HikariCP - Shutdown initiated...
-2025-12-09 22:47:29.104 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - AI-Robot-HikariCP - Shutdown completed.
