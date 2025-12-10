@@ -1,5 +1,0 @@
-spring:
-  ai:
-    openai:
-      base-url: https://dashscope.aliyuncs.com/compatible-mode # OpenAI 服务的访问地址，这里使用的是阿里云百炼
-      api-key: sk-33f7bdae9ef04d07a2ec214729f07c9c  # 填写阿里百炼 API Key, 改成你自己的
