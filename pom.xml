@@ -25,6 +25,7 @@
         <!-- Mybatis Plus -->
         <mybatis-plus.version>3.5.12</mybatis-plus.version>
         <p6spy.version>3.9.1</p6spy.version>
+        <guava.version>33.0.0-jre</guava.version>
     </properties>
 
     <!-- Spring AI 依赖管理   -->
@@ -66,6 +67,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
 
         <!-- 避免编写那些冗余的 Java 样板式代码，如 get、set 方法等 -->
