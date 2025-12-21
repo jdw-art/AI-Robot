@@ -1,17 +1,27 @@
 package com.jacob.ai.robot.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jacob.ai.robot.domain.dos.ChatDO;
+import com.jacob.ai.robot.domain.dos.ChatMessageDO;
 import com.jacob.ai.robot.domain.mapper.ChatMapper;
+import com.jacob.ai.robot.domain.mapper.ChatMessageMapper;
+import com.jacob.ai.robot.model.vo.chat.FindChatHistoryMessagePageListReqVO;
+import com.jacob.ai.robot.model.vo.chat.FindChatHistoryMessagePageListRspVO;
 import com.jacob.ai.robot.model.vo.chat.NewChatReqVO;
 import com.jacob.ai.robot.model.vo.chat.NewChatRspVO;
 import com.jacob.ai.robot.service.ChatService;
+import com.jacob.ai.robot.utils.PageResponse;
 import com.jacob.ai.robot.utils.Response;
 import com.jacob.ai.robot.utils.StringUtil;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @Author: Jacob
@@ -24,6 +34,9 @@ public class ChatServiceImpl implements ChatService {
 
     @Resource
     private ChatMapper chatMapper;
+
+    @Resource
+    private ChatMessageMapper chatMessageMapper;
 
     /**
      * 新建对话
@@ -54,5 +67,41 @@ public class ChatServiceImpl implements ChatService {
                 .uuid(uuid)
                 .summary(summary)
                 .build());
+    }
+
+    /**
+     * 查询历史消息
+     *
+     * @param findChatHistoryMessagePageListReqVO
+     * @return
+     */
+    @Override
+    public PageResponse<FindChatHistoryMessagePageListRspVO> findChatHistoryMessagePageList(FindChatHistoryMessagePageListReqVO findChatHistoryMessagePageListReqVO) {
+        // 获取当前页、以及每页需要展示的数据数量
+        Long current = findChatHistoryMessagePageListReqVO.getCurrent();
+        Long size = findChatHistoryMessagePageListReqVO.getSize();
+        String chatId = findChatHistoryMessagePageListReqVO.getChatId();
+
+        // 执行分页查询
+        Page<ChatMessageDO> chatMessageDOPage = chatMessageMapper.selectPageList(current, size, chatId);
+
+        List<ChatMessageDO> chatMessageDOS = chatMessageDOPage.getRecords();
+        // DO 转 VO
+        List<FindChatHistoryMessagePageListRspVO> vos = null;
+        if (CollUtil.isNotEmpty(chatMessageDOS)) {
+            vos = chatMessageDOS.stream()
+                    .map(chatMessageDO -> FindChatHistoryMessagePageListRspVO.builder() // 构建返参 VO 实体类
+                            .id(chatMessageDO.getId())
+                            .chatId(chatMessageDO.getChatUuid())
+                            .content(chatMessageDO.getContent())
+                            .role(chatMessageDO.getRole())
+                            .createTime(chatMessageDO.getCreateTime())
+                            .build())
+                    // 升序排序
+                    .sorted(Comparator.comparing(FindChatHistoryMessagePageListRspVO::getCreateTime))
+                    .collect(Collectors.toList());
+        }
+
+        return PageResponse.success(chatMessageDOPage, vos);
     }
 }

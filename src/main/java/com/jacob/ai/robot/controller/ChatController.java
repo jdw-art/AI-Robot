@@ -8,10 +8,13 @@ import com.jacob.ai.robot.aspect.ApiOperationLog;
 import com.jacob.ai.robot.domain.mapper.ChatMessageMapper;
 import com.jacob.ai.robot.model.AIResponse;
 import com.jacob.ai.robot.model.vo.chat.AiChatReqVO;
+import com.jacob.ai.robot.model.vo.chat.FindChatHistoryMessagePageListReqVO;
+import com.jacob.ai.robot.model.vo.chat.FindChatHistoryMessagePageListRspVO;
 import com.jacob.ai.robot.model.vo.chat.NewChatReqVO;
 import com.jacob.ai.robot.service.ChatService;
 import com.jacob.ai.robot.service.SearXNGService;
 import com.jacob.ai.robot.service.SearchResultContentFetcherService;
+import com.jacob.ai.robot.utils.PageResponse;
 import com.jacob.ai.robot.utils.Response;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -73,6 +76,7 @@ public class ChatController {
 
     /**
      * 流式对话
+     *
      * @return
      */
     @PostMapping(value = "/completion", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -127,6 +131,17 @@ public class ChatController {
                 .content()
                 .mapNotNull(text -> AIResponse.builder().v(text).build()); // 构建返参 AIResponse
 
+    }
+
+    /**
+     * 分页查询历史消息
+     * @param findChatHistoryMessagePageListReqVO
+     * @return
+     */
+    @PostMapping("/message/list")
+    @ApiOperationLog(description = "查询对话历史消息")
+    public PageResponse<FindChatHistoryMessagePageListRspVO> findChatMessagePageList(@RequestBody @Validated FindChatHistoryMessagePageListReqVO findChatHistoryMessagePageListReqVO) {
+        return chatService.findChatHistoryMessagePageList(findChatHistoryMessagePageListReqVO);
     }
 
 }
