@@ -1,9 +1,6 @@
 package com.jacob.ai.robot.service;
 
-import com.jacob.ai.robot.model.vo.chat.FindChatHistoryMessagePageListReqVO;
-import com.jacob.ai.robot.model.vo.chat.FindChatHistoryMessagePageListRspVO;
-import com.jacob.ai.robot.model.vo.chat.NewChatReqVO;
-import com.jacob.ai.robot.model.vo.chat.NewChatRspVO;
+import com.jacob.ai.robot.model.vo.chat.*;
 import com.jacob.ai.robot.utils.PageResponse;
 import com.jacob.ai.robot.utils.Response;
 
@@ -30,5 +27,12 @@ public interface ChatService {
      * @return
      */
     PageResponse<FindChatHistoryMessagePageListRspVO> findChatHistoryMessagePageList(FindChatHistoryMessagePageListReqVO findChatHistoryMessagePageListReqVO);
+
+    /**
+     * 查询历史对话
+     * @param findChatHistoryPageListReqVO
+     * @return
+     */
+    PageResponse<FindChatHistoryPageListRspVO> findChatHistoryPageList(FindChatHistoryPageListReqVO findChatHistoryPageListReqVO);
 
 }
