@@ -35,4 +35,11 @@ public interface ChatService {
      */
     PageResponse<FindChatHistoryPageListRspVO> findChatHistoryPageList(FindChatHistoryPageListReqVO findChatHistoryPageListReqVO);
 
+    /**
+     * 重命名对话摘要
+     * @param renameChatReqVO
+     * @return
+     */
+    Response<?> renameChatSummary(RenameChatReqVO renameChatReqVO);
+
 }
